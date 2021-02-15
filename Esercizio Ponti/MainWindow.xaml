@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Esercizio_Ponti"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="450">
     <Grid>
-        
+        <Image x:Name="imgSfondo" HorizontalAlignment="Left" Height="569" VerticalAlignment="Top" Width="442" Source="ponte.png" Stretch="Fill"/>
+        <Image x:Name="img1" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
+        <Image x:Name="img2" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
+        <Image x:Name="img3" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
+        <Image x:Name="img4" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
     </Grid>
 </Window>
