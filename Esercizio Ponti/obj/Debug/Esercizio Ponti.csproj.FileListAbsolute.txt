@@ -1,0 +1,15 @@
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\bin\Debug\Esercizio Ponti.exe.config
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\bin\Debug\Esercizio Ponti.exe
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\bin\Debug\Esercizio Ponti.pdb
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\Esercizio Ponti.csprojAssemblyReference.cache
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\MainWindow.g.cs
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\App.g.cs
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\Esercizio Ponti_MarkupCompile.cache
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\Esercizio Ponti_MarkupCompile.lref
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\MainWindow.baml
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\Esercizio Ponti.g.resources
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\Esercizio_Ponti.Properties.Resources.resources
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\Esercizio Ponti.csproj.GenerateResource.cache
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\Esercizio Ponti.csproj.CoreCompileInputs.cache
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\Esercizio Ponti.exe
+C:\Users\Lorenzo\Desktop\Esercizio-Ponti\Esercizio Ponti\obj\Debug\Esercizio Ponti.pdb
