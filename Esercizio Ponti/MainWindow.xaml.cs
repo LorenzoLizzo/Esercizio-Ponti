@@ -37,10 +37,27 @@ namespace Esercizio_Ponti
 
         public void RandomSpawnMacchine()
         {
+            lstImage.Clear();
             lstImage.Add(img1);
             lstImage.Add(img2);
             lstImage.Add(img3);
             lstImage.Add(img4);
+            lstImage.Add(img5);
+            lstImage.Add(img6);
+            lstImage.Add(img7);
+            lstImage.Add(img8);
+            lstImage.Add(img9);
+            lstImage.Add(img10);
+            lstImage.Add(img11);
+            lstImage.Add(img12);
+            lstImage.Add(img13);
+            lstImage.Add(img14);
+            lstImage.Add(img15);
+            lstImage.Add(img16);
+            lstImage.Add(img17);
+            lstImage.Add(img18);
+            lstImage.Add(img19);
+            lstImage.Add(img20);
             for (int i = 0; i < lstImage.Count; i++)
             {
                 if (r.Next(0, 2) == 0)
@@ -87,7 +104,7 @@ namespace Esercizio_Ponti
                             marginBottom = (int)img.Margin.Bottom;
                             marginRight = (int)img.Margin.Right;
                         }));
-                        Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                        Thread.Sleep(TimeSpan.FromMilliseconds(0.5));
                         marginTop += 1;
                         this.Dispatcher.BeginInvoke(new Action(() =>
                         {
@@ -128,13 +145,18 @@ namespace Esercizio_Ponti
                             }));
 
 
-                            Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                            Thread.Sleep(TimeSpan.FromMilliseconds(0.5));
 
                             if (marginTop == 100)
                             {
                                 queueImgEntrateNelPonte.Enqueue(img);
+
                             }
-                            marginTop += 1;
+                            if (queueImgEntrateNelPonte.Count < 10)
+                            {
+                                marginTop += 1;
+                            }
+
 
                             this.Dispatcher.BeginInvoke(new Action(() =>
                             {
@@ -185,24 +207,40 @@ namespace Esercizio_Ponti
                             marginBottom = (int)img.Margin.Bottom;
                             marginRight = (int)img.Margin.Right;
                         }));
-                        Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                        Thread.Sleep(TimeSpan.FromMilliseconds(0.5));
                         marginTop += 1;
                         this.Dispatcher.BeginInvoke(new Action(() =>
                         {
                             img.Margin = new Thickness(marginLeft, marginTop, marginRight, marginBottom);
                         }));
 
-                        if (marginTop == 640 && i == filaA.Count - 1)
+                        if (marginTop >= 640 && i == filaA.Count - 1)
                         {
+                            filaA.RemoveAt(i);
                             ver = true;
                             break;
                         }
+                        else if (marginTop >= 640)
+                        {
+                            filaA.RemoveAt(i);
+                        }
+
                     }
                     if (ver)
                     {
                         break;
                     }
                 }
+
+                if (filaA.Count == 0 && filaB.Count == 0)
+                {
+                    this.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        btnInizia.IsEnabled = true;
+                    }));
+
+                }
+
 
 
             }
@@ -230,7 +268,7 @@ namespace Esercizio_Ponti
                             marginBottom = (int)img.Margin.Bottom;
                             marginRight = (int)img.Margin.Right;
                         }));
-                        Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                        Thread.Sleep(TimeSpan.FromMilliseconds(0.5));
                         marginTop -= 1;
                         this.Dispatcher.BeginInvoke(new Action(() =>
                         {
@@ -271,13 +309,16 @@ namespace Esercizio_Ponti
                             }));
 
 
-                            Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                            Thread.Sleep(TimeSpan.FromMilliseconds(0.5));
 
                             if (marginTop == 410)
                             {
                                 queueImgEntrateNelPonte.Enqueue(img);
                             }
-                            marginTop -= 1;
+                            if (queueImgEntrateNelPonte.Count < 10)
+                            {
+                                marginTop -= 1;
+                            }
 
                             this.Dispatcher.BeginInvoke(new Action(() =>
                             {
@@ -327,17 +368,22 @@ namespace Esercizio_Ponti
                             marginBottom = (int)img.Margin.Bottom;
                             marginRight = (int)img.Margin.Right;
                         }));
-                        Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                        Thread.Sleep(TimeSpan.FromMilliseconds(0.5));
                         marginTop -= 1;
                         this.Dispatcher.BeginInvoke(new Action(() =>
                         {
                             img.Margin = new Thickness(marginLeft, marginTop, marginRight, marginBottom);
                         }));
 
-                        if (marginTop == -70 && i == filaB.Count - 1)
+                        if (marginTop <= -70 && i == filaB.Count - 1)
                         {
+                            filaB.RemoveAt(i);
                             ver = true;
                             break;
+                        }
+                        else if (marginTop <= -70)
+                        {
+                            filaB.RemoveAt(i);
                         }
                     }
                     if (ver)
@@ -345,6 +391,16 @@ namespace Esercizio_Ponti
                         break;
                     }
                 }
+
+                if (filaA.Count == 0 && filaB.Count == 0)
+                {
+                    this.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        btnInizia.IsEnabled = true;
+                    }));
+
+                }
+
 
 
             }
@@ -361,6 +417,7 @@ namespace Esercizio_Ponti
 
         private void btnInizia_Click(object sender, RoutedEventArgs e)
         {
+            btnInizia.IsEnabled = false;
             r = new Random();
             lstImage = new List<Image>();
             filaA = new List<Image>();
