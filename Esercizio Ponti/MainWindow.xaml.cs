@@ -21,9 +21,11 @@ namespace Esercizio_Ponti
     /// </summary>
     public partial class MainWindow : Window
     {
+        readonly Uri uriMacchinaReverse = new Uri("macchina1Revers.png", UriKind.Relative);
+        readonly Uri uriMacchina = new Uri("macchina1.png", UriKind.Relative);
+        Random r;
         Thread t1;
         Thread t2;
-        Random r;
         List<Image> lstImage;
         List<Image> filaA;
         List<Image> filaB;
@@ -31,16 +33,6 @@ namespace Esercizio_Ponti
         public MainWindow()
         {
             InitializeComponent();
-            r = new Random();
-            lstImage = new List<Image>();
-            filaA = new List<Image>();
-            filaB = new List<Image>();
-            RandomSpawnMacchine();
-            t1 = new Thread(new ThreadStart(MuoviFilaA));
-            t2 = new Thread(new ThreadStart(MuoviFilaB));
-
-            t1.Start();
-            t2.Start();
         }
 
         public void RandomSpawnMacchine()
@@ -49,18 +41,25 @@ namespace Esercizio_Ponti
             lstImage.Add(img2);
             lstImage.Add(img3);
             lstImage.Add(img4);
-
-            foreach (Image img in lstImage)
+            for (int i = 0; i < lstImage.Count; i++)
             {
                 if (r.Next(0, 2) == 0)
                 {
-                    img.Margin = new Thickness(181, (-50 - (60 * (filaA.Count))), 0, 0);
-                    filaA.Add(img);
+                    lstImage[i].Source = new BitmapImage(uriMacchinaReverse);
+                    lstImage[i].Margin = new Thickness(181, (-50 - (60 * (filaA.Count))), 0, 0);
+                    filaA.Add(lstImage[i]);
+                    lstImage.Remove(lstImage[i]);
+                    i--;
+                    lblAutoFilaA.Content = "Auto in fila per la filaA: " + filaA.Count;
                 }
                 else
                 {
-                    img.Margin = new Thickness(238, (590 + (60 * (filaB.Count))), 0, 0);
-                    filaB.Add(img);
+                    lstImage[i].Source = new BitmapImage(uriMacchina);
+                    lstImage[i].Margin = new Thickness(238, (569 + (60 * (filaB.Count))), 0, 0);
+                    filaB.Add(lstImage[i]);
+                    lstImage.Remove(lstImage[i]);
+                    i--;
+                    lblAutoFilaB.Content = "Auto in fila per la filaB: " + filaB.Count;
                 }
             }
 
@@ -70,6 +69,7 @@ namespace Esercizio_Ponti
         {
             if (filaA.Count != 0)
             {
+                int autoInFila = filaA.Count;
                 while (true)
                 {
                     bool ver = false;
@@ -87,8 +87,8 @@ namespace Esercizio_Ponti
                             marginBottom = (int)img.Margin.Bottom;
                             marginRight = (int)img.Margin.Right;
                         }));
-                        Thread.Sleep(TimeSpan.FromMilliseconds(100));
-                        marginTop += 30;
+                        Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                        marginTop += 1;
                         this.Dispatcher.BeginInvoke(new Action(() =>
                         {
                             img.Margin = new Thickness(marginLeft, marginTop, marginRight, marginBottom);
@@ -128,13 +128,13 @@ namespace Esercizio_Ponti
                             }));
 
 
-                            Thread.Sleep(TimeSpan.FromMilliseconds(100));
+                            Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
 
                             if (marginTop == 100)
                             {
                                 queueImgEntrateNelPonte.Enqueue(img);
                             }
-                            marginTop += 30;
+                            marginTop += 1;
 
                             this.Dispatcher.BeginInvoke(new Action(() =>
                             {
@@ -145,6 +145,12 @@ namespace Esercizio_Ponti
                             if (marginTop == 400)
                             {
                                 queueImgEntrateNelPonte.Dequeue();
+                                autoInFila--;
+                                this.Dispatcher.BeginInvoke(new Action(() =>
+                                {
+                                    lblAutoFilaA.Content = "Auto in fila per la filaA: " + autoInFila;
+                                }));
+
                                 if (queueImgEntrateNelPonte.Count == 0)
                                 {
                                     ver = true;
@@ -179,8 +185,8 @@ namespace Esercizio_Ponti
                             marginBottom = (int)img.Margin.Bottom;
                             marginRight = (int)img.Margin.Right;
                         }));
-                        Thread.Sleep(TimeSpan.FromMilliseconds(100));
-                        marginTop += 30;
+                        Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                        marginTop += 1;
                         this.Dispatcher.BeginInvoke(new Action(() =>
                         {
                             img.Margin = new Thickness(marginLeft, marginTop, marginRight, marginBottom);
@@ -206,6 +212,7 @@ namespace Esercizio_Ponti
 
             if (filaB.Count != 0)
             {
+                int autoInFila = filaB.Count;
                 while (true)
                 {
                     bool ver = false;
@@ -223,14 +230,14 @@ namespace Esercizio_Ponti
                             marginBottom = (int)img.Margin.Bottom;
                             marginRight = (int)img.Margin.Right;
                         }));
-                        Thread.Sleep(TimeSpan.FromMilliseconds(100));
-                        marginTop -= 30;
+                        Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                        marginTop -= 1;
                         this.Dispatcher.BeginInvoke(new Action(() =>
                         {
                             img.Margin = new Thickness(marginLeft, marginTop, marginRight, marginBottom);
                         }));
 
-                        if (marginTop == 410)
+                        if (marginTop == 419)
                         {
                             ver = true;
                             break;
@@ -264,13 +271,13 @@ namespace Esercizio_Ponti
                             }));
 
 
-                            Thread.Sleep(TimeSpan.FromMilliseconds(100));
+                            Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
 
                             if (marginTop == 410)
                             {
                                 queueImgEntrateNelPonte.Enqueue(img);
                             }
-                            marginTop -= 30;
+                            marginTop -= 1;
 
                             this.Dispatcher.BeginInvoke(new Action(() =>
                             {
@@ -281,6 +288,12 @@ namespace Esercizio_Ponti
                             if (marginTop == 110)
                             {
                                 queueImgEntrateNelPonte.Dequeue();
+                                autoInFila--;
+                                this.Dispatcher.BeginInvoke(new Action(() =>
+                                {
+                                    lblAutoFilaB.Content = "Auto in fila per la filaB: " + autoInFila;
+                                }));
+
                                 if (queueImgEntrateNelPonte.Count == 0)
                                 {
                                     ver = true;
@@ -314,8 +327,8 @@ namespace Esercizio_Ponti
                             marginBottom = (int)img.Margin.Bottom;
                             marginRight = (int)img.Margin.Right;
                         }));
-                        Thread.Sleep(TimeSpan.FromMilliseconds(100));
-                        marginTop -= 30;
+                        Thread.Sleep(TimeSpan.FromMilliseconds(r.Next(2, 11)));
+                        marginTop -= 1;
                         this.Dispatcher.BeginInvoke(new Action(() =>
                         {
                             img.Margin = new Thickness(marginLeft, marginTop, marginRight, marginBottom);
@@ -333,7 +346,27 @@ namespace Esercizio_Ponti
                     }
                 }
 
+
             }
+        }
+
+        public void Start()
+        {
+            t1 = new Thread(new ThreadStart(MuoviFilaA));
+            t2 = new Thread(new ThreadStart(MuoviFilaB));
+
+            t1.Start();
+            t2.Start();
+        }
+
+        private void btnInizia_Click(object sender, RoutedEventArgs e)
+        {
+            r = new Random();
+            lstImage = new List<Image>();
+            filaA = new List<Image>();
+            filaB = new List<Image>();
+            RandomSpawnMacchine();
+            Start();
         }
     }
 }

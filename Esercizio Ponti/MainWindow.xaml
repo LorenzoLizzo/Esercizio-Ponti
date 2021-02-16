@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Esercizio_Ponti"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="450">
+        Title="MainWindow" Height="600" Width="510">
     <Grid>
         <Image x:Name="imgSfondo" HorizontalAlignment="Left" Height="569" VerticalAlignment="Top" Width="442" Source="ponte.png" Stretch="Fill"/>
         <Image x:Name="img1" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
         <Image x:Name="img2" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
         <Image x:Name="img3" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
         <Image x:Name="img4" HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
+        <Label x:Name="lblAutoFilaB" Content="" HorizontalAlignment="Left" Margin="10,457,0,0" VerticalAlignment="Top" Height="36" Width="228"/>
+        <Label x:Name="lblAutoFilaA" Content="" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="228" Height="41"/>
+        <Button x:Name="btnInizia" Content="Inizia" HorizontalAlignment="Left" Margin="442,0,0,0" VerticalAlignment="Center" Width="60" Height="569" Click="btnInizia_Click"/>
     </Grid>
 </Window>
