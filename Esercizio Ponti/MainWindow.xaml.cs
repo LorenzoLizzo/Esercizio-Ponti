@@ -158,13 +158,13 @@ namespace Esercizio_Ponti
 
                 while (filaA.Count > 0)
                 {
-                    Thread.Sleep(TimeSpan.FromMilliseconds(100));
+                   
                     lock (locker)
                     {
-                        List<int> listaImmaginiNelPonte = new List<int>();
+                        List<Image> listaImmaginiNelPonte = new List<Image>();
                         int massimo = 0;
                         int distanza = 100;
-                        while (true)
+                        while (filaA.Count > 0)
                         {
                             bool ver = false;
                             for (int i = 0; i < filaA.Count; i++)
@@ -191,26 +191,26 @@ namespace Esercizio_Ponti
                                     {
                                         if (img == camionFilaA.Peek() && massimo == 0)
                                         {
-                                            listaImmaginiNelPonte.Add(i);
+                                            listaImmaginiNelPonte.Add(img);
                                             camionFilaA.Dequeue();
                                             massimo = 10;
                                         }
                                         else if (img != camionFilaA.Peek() && massimo < 10)
                                         {
-                                            listaImmaginiNelPonte.Add(i);
+                                            listaImmaginiNelPonte.Add(img);
                                             massimo++;
                                         }
 
                                     }
                                     else if (massimo < 10)
                                     {
-                                        listaImmaginiNelPonte.Add(i);
+                                        listaImmaginiNelPonte.Add(img);
                                         massimo++;
                                     }
 
                                 }
 
-                                if (listaImmaginiNelPonte.Contains(i) || marginTop < distanza || marginTop >= 400)
+                                if (listaImmaginiNelPonte.Contains(img) || marginTop < distanza || marginTop >= 400)
                                 {
                                     marginTop += 1;
                                 }
@@ -228,7 +228,7 @@ namespace Esercizio_Ponti
 
                                 if (marginTop == 400)
                                 {
-                                    listaImmaginiNelPonte.Remove(i);
+                                    listaImmaginiNelPonte.Remove(img);
                                     listaImmaginiDopoPonteFilaA.Add(img);
                                     autoInFila--;
                                     this.Dispatcher.BeginInvoke(new Action(() =>
@@ -242,6 +242,11 @@ namespace Esercizio_Ponti
                                         break;
                                     }
                                 }
+                                else if (marginTop >= 640)
+                                {
+                                    listaImmaginiDopoPonteFilaA.Remove(img);
+                                    filaA.RemoveAt(i);
+                                }
 
                             }
 
@@ -253,14 +258,11 @@ namespace Esercizio_Ponti
                     }
 
 
-                    while (true)
+                    while (filaA.Count > 0)
                     {
                         bool ver = false;
-                        if (filaA.Count == 0)
-                        {
-                            ver = true;
-                        }
-                        for (int i = 0; i < filaA.Count; i++)
+
+                        for (int i = 0; i < listaImmaginiDopoPonteFilaA.Count; i++)
                         {
                             int marginLeft = int.MinValue;
                             int marginTop = int.MinValue;
@@ -288,6 +290,11 @@ namespace Esercizio_Ponti
                             {
                                 listaImmaginiDopoPonteFilaA.Remove(img);
                                 filaA.RemoveAt(i);
+                                ver = true;
+                                break;
+                            }
+                            else if (filaB.Count == 0 && marginTop >= 400 && filaA.Count > 0)
+                            {
                                 ver = true;
                                 break;
                             }
@@ -362,14 +369,13 @@ namespace Esercizio_Ponti
 
                 while (filaB.Count > 0)
                 {
-                    Thread.Sleep(TimeSpan.FromMilliseconds(100));
                     lock (locker)
                     {
-                        List<int> listaImmaginiNelPonte = new List<int>();
+                        List<Image> listaImmaginiNelPonte = new List<Image>();
 
                         int massimo = 0;
                         int distanza = 419;
-                        while (true)
+                        while (filaB.Count > 0)
                         {
                             bool ver = false;
                             for (int i = 0; i < filaB.Count; i++)
@@ -396,26 +402,26 @@ namespace Esercizio_Ponti
                                     {
                                         if (img == camionFilaB.Peek() && massimo == 0)
                                         {
-                                            listaImmaginiNelPonte.Add(i);
+                                            listaImmaginiNelPonte.Add(img);
                                             camionFilaB.Dequeue();
                                             massimo = 10;
                                         }
                                         else if (img != camionFilaB.Peek() && massimo < 10)
                                         {
-                                            listaImmaginiNelPonte.Add(i);
+                                            listaImmaginiNelPonte.Add(img);
                                             massimo++;
                                         }
 
                                     }
                                     else if (massimo < 10)
                                     {
-                                        listaImmaginiNelPonte.Add(i);
+                                        listaImmaginiNelPonte.Add(img);
                                         massimo++;
                                     }
 
                                 }
 
-                                if (listaImmaginiNelPonte.Contains(i) || marginTop > distanza || marginTop <= 110)
+                                if (listaImmaginiNelPonte.Contains(img) || marginTop > distanza || marginTop <= 110)
                                 {
                                     marginTop -= 1;
                                 }
@@ -433,7 +439,7 @@ namespace Esercizio_Ponti
 
                                 if (marginTop == 110)
                                 {
-                                    listaImmaginiNelPonte.Remove(i);
+                                    listaImmaginiNelPonte.Remove(img);
                                     listaImmaginiDopoPonteFilaB.Add(img);
                                     autoInFila--;
                                     this.Dispatcher.BeginInvoke(new Action(() =>
@@ -447,6 +453,11 @@ namespace Esercizio_Ponti
                                         break;
                                     }
                                 }
+                                else if (marginTop <= -70)
+                                {
+                                    listaImmaginiDopoPonteFilaB.Remove(img);
+                                    filaB.RemoveAt(i);
+                                }
 
                             }
 
@@ -457,15 +468,12 @@ namespace Esercizio_Ponti
                         }
                     }
 
-                    while (true)
+                    while (filaB.Count > 0)
                     {
                         bool ver = false;
-                        if (filaB.Count == 0)
-                        {
-                            ver = true;
-                        }
 
-                        for (int i = 0; i < filaB.Count; i++)
+
+                        for (int i = 0; i < listaImmaginiDopoPonteFilaB.Count; i++)
                         {
                             int marginLeft = int.MaxValue;
                             int marginTop = int.MaxValue;
@@ -499,11 +507,17 @@ namespace Esercizio_Ponti
                                 ver = true;
                                 break;
                             }
+                            else if (filaA.Count == 0 && marginTop <= 110 && filaB.Count > 0)
+                            {
+                                ver = true;
+                                break;
+                            }
                             else if (marginTop <= -70)
                             {
                                 listaImmaginiDopoPonteFilaB.Remove(img);
                                 filaB.RemoveAt(i);
                             }
+
 
                         }
                         if (ver)
