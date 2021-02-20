@@ -21,10 +21,16 @@ namespace Esercizio_Ponti
     /// </summary>
     public partial class MainWindow : Window
     {
-        readonly Uri uriMacchinaReverse = new Uri("macchina1Revers.png", UriKind.Relative);
         readonly Uri uriMacchina = new Uri("macchina1.png", UriKind.Relative);
+        readonly Uri uriMacchinaReverse = new Uri("macchina1Revers.png", UriKind.Relative);
         readonly Uri uriCamion = new Uri("camion.png", UriKind.Relative);
         readonly Uri uriCamionReverse = new Uri("camionRevers.png", UriKind.Relative);
+        readonly Uri uriMacchina2 = new Uri("macchina2.png", UriKind.Relative);
+        readonly Uri uriMacchina2Reverse = new Uri("macchina2reverse.png", UriKind.Relative);
+        readonly Uri uriMacchina3 = new Uri("macchina3.png", UriKind.Relative);
+        readonly Uri uriMacchina3Reverse = new Uri("macchina3reverse.png", UriKind.Relative);
+        readonly Uri uriMacchina4 = new Uri("macchina4.png", UriKind.Relative);
+        readonly Uri uriMacchina4Reverse = new Uri("macchina4reverse.png", UriKind.Relative);
         Random r;
         Thread t1;
         Thread t2;
@@ -82,7 +88,24 @@ namespace Esercizio_Ponti
                     }
                     else
                     {
-                        lstImage[i].Source = new BitmapImage(uriMacchinaReverse);
+                        int tmp = r.Next(0, 4);
+                        if (tmp == 0)
+                        {
+                            lstImage[i].Source = new BitmapImage(uriMacchinaReverse);
+                        }
+                        else if(tmp == 1)
+                        {
+                            lstImage[i].Source = new BitmapImage(uriMacchina2Reverse);
+                        }
+                        else if (tmp == 2)
+                        {
+                            lstImage[i].Source = new BitmapImage(uriMacchina3Reverse);
+                        }
+                        else
+                        {
+                            lstImage[i].Source = new BitmapImage(uriMacchina4Reverse);
+                        }
+
                     }
                     lstImage[i].Margin = new Thickness(181, (-50 - (60 * (filaA.Count))), 0, 0);
                     filaA.Add(lstImage[i]);
@@ -103,7 +126,23 @@ namespace Esercizio_Ponti
                     }
                     else
                     {
-                        lstImage[i].Source = new BitmapImage(uriMacchina);
+                        int tmp = r.Next(0, 4);
+                        if (tmp == 0)
+                        {
+                            lstImage[i].Source = new BitmapImage(uriMacchina);
+                        }
+                        else if (tmp == 1)
+                        {
+                            lstImage[i].Source = new BitmapImage(uriMacchina2);
+                        }
+                        else if (tmp == 2)
+                        {
+                            lstImage[i].Source = new BitmapImage(uriMacchina3);
+                        }
+                        else
+                        {
+                            lstImage[i].Source = new BitmapImage(uriMacchina4);
+                        }
                     }
                     lstImage[i].Margin = new Thickness(238, (570 + (60 * (filaB.Count))), 0, 0);
                     filaB.Add(lstImage[i]);

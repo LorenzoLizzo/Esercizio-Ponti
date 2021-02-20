@@ -115,5 +115,23 @@
   <ItemGroup>
     <Resource Include="semaforoVerde.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="macchina2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="macchina2reverse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="macchina3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="macchina3reverse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="macchina4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="macchina4reverse.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
