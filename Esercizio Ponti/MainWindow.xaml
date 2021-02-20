@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Esercizio_Ponti"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="510">
+        Title="MainWindow" Height="600" Width="520" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Image x:Name="imgSfondo" HorizontalAlignment="Left" Height="569" VerticalAlignment="Top" Width="442" Source="ponte.png" Stretch="Fill"/>
         <Image x:Name="img1" HorizontalAlignment="Left" Height="45" Margin="-41,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
@@ -30,6 +30,10 @@
         <Image x:Name="img20" HorizontalAlignment="Left" Height="45" Margin="-41,10,0,0" VerticalAlignment="Top" Width="25" Source="macchina1.png"/>
         <Label x:Name="lblAutoFilaB" Content="" HorizontalAlignment="Left" Margin="10,458,0,0" VerticalAlignment="Top" Height="36" Width="228" FontSize="10"/>
         <Label x:Name="lblAutoFilaA" Content="" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="228" Height="41" FontSize="10"/>
-        <Button x:Name="btnInizia" Content="Simula" HorizontalAlignment="Left" Margin="442,0,0,0" VerticalAlignment="Center" Width="60" Height="569" Click="btnInizia_Click"/>
+        <Button x:Name="btnInizia" Content="Simula" HorizontalAlignment="Left" Margin="442,0,0,0" VerticalAlignment="Center" Width="70" Height="569" Click="btnInizia_Click"/>
+        <Image x:Name="imgSemaforoRossoFilaA" HorizontalAlignment="Left" Height="100" Margin="320,26,0,0" VerticalAlignment="Top" Width="100" Source="semaforoRosso.png" Visibility="Hidden"/>
+        <Image x:Name="imgSemaforoVerdeFilaA" HorizontalAlignment="Left" Height="100" Margin="320,26,0,0" VerticalAlignment="Top" Width="100" Source="semaforoVerde.png"/>
+        <Image x:Name="imgSemaforoRossoFilaB" HorizontalAlignment="Left" Height="100" Margin="320,407,0,0" VerticalAlignment="Top" Width="100" Source="semaforoRosso.png" Visibility="Hidden"/>
+        <Image x:Name="imgSemaforoVerdeFilaB" HorizontalAlignment="Left" Height="100" Margin="320,407,0,0" VerticalAlignment="Top" Width="100" Source="semaforoVerde.png"/>
     </Grid>
 </Window>
